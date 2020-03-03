@@ -1,22 +1,22 @@
-const axios = require('axios').default;
-const services = require('./services');
-var argv = require('minimist')(process.argv.slice(2));
+const axios = require("axios").default;
+const services = require("./services");
+var argv = require("minimist")(process.argv.slice(2));
 
-if(argv._.length !== 1)
-    throw new Error('Some message');
+if (argv._.length !== 1)
+  throw new Error(`Livy accepts service name as an argument.`);
 
-async function getStatus(service)
-{
-    const regex = new RegExp('<.*"' + service.atrName + '".*>(.*)', 'gm');
-    let response = await axios.get(service.url);
-    console.log(regex.exec(response.data) !== null);
-}
+const isServiceUp = async service => {
+  const regex = new RegExp('<.*"' + service.attributeName + '".*>(.*)', "gm");
+  let response;
+  response = await axios.get(service.url);
 
-for(let service of services)
-{
-    if(service.name == argv._[0])
-    {
-        getStatus(service);
-        break;
-    }
+  return regex.exec(response.data) !== null;
+};
+
+if (services[argv._[0]]) {
+  isServiceUp(services[argv._[0]]).then(status => {
+    console.log(status);
+  });
+} else {
+  console.error(`Service name doesn't exists.`);
 }

@@ -1,13 +1,9 @@
-module.exports = 
-[
-    {
-        name: "github",
-        url: 'https://www.githubstatus.com/',
-        atrName: "status font-large"
-    },
-    {
-        name: "gcp",
-        url: 'https://status.cloud.google.com',
-        atrName: "status"
-    }
-]
+module.exports.github = {
+  url: "https://www.githubstatus.com/",
+  attributeName: "status font-large"
+};
+
+module.exports.gcp = {
+  url: "https://status.cloud.google.com",
+  attributeName: "status"
+};
