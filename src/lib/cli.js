@@ -12,14 +12,6 @@ const isServiceUp = async service => {
   return regex.exec(response.data) !== null;
 };
 
-const sleep = new Promise((resolve, reject) => {
-  setTimeout(1000, console.log('hello'));
-});
-const collectioon = ['a', 'b', 'c', 'd'];
-for (const item of collectioon) {
-  await sleep(30000);
-}
-
 if (services[argv._[0]]) {
   isServiceUp(services[argv._[0]]).then(status => {
     console.log(status);
