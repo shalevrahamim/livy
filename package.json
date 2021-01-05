@@ -50,7 +50,7 @@
     "prettier-eslint": "8.8.2"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "jest": "25.1.0",
     "minimist": "1.2.0",
     "request": "2.88.2"
